@@ -29,20 +29,22 @@ const ProductsList = () => {
 
   return (
     <div>
-  <h1>Products List</h1>
-  <div className="products-container">
-    {products.map(product => (
-      <div key={product.id} className="product-item">
-        {product.product_image && <img src={product.product_image} alt={product.product_name} style={{ maxWidth: '200px' }} />}
-        <h2>{product.product_name}</h2>
-        <p>{product.product_description}</p>
-        <p>Price: ₱{product.price}</p>
-      </div>
-    ))}
+      <h1>Products List</h1>
+      <div className="products-container">
+        {products.map((product, index) => (
+          <div key={product.id} className={`product-item ${index % 4 === 3 ? 'last-in-row' : ''}`}>
+            {product.product_image && <img src={product.product_image} alt={product.product_name} style={{ maxWidth: '200px' }} />}
+            <h2>{product.product_name}</h2>
+            <p>{product.product_description}</p>
+            <p>Price: ₱{product.price}</p>
+          </div>
+        ))}
+
   </div>
 </div>
 
   );
+  
 };
 
 export default ProductsList;
