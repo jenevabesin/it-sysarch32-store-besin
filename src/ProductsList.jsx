@@ -29,18 +29,19 @@ const ProductsList = () => {
 
   return (
     <div>
-      <h1>Products List</h1>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            {product.product_image && <img src={product.product_image} alt={product.product_name} style={{ maxWidth: '200px' }} />}
-            <h2>{product.product_name}</h2>
-            <p>{product.product_description}</p>
-            <p>Price: ${product.price}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+  <h1>Products List</h1>
+  <div className="products-container">
+    {products.map(product => (
+      <div key={product.id} className="product-item">
+        {product.product_image && <img src={product.product_image} alt={product.product_name} style={{ maxWidth: '200px' }} />}
+        <h2>{product.product_name}</h2>
+        <p>{product.product_description}</p>
+        <p>Price: ₱{product.price}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 

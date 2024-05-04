@@ -1,19 +1,67 @@
-/* ProductsList.css */
+
+.app {
+  font-family: Arial, sans-serif;
+}
+
+.body{
+  position: relative; 
+  text-align: center;
+  padding: 50px;
+}
+
+header {
+  background-color: purple;
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+header button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+  padding: 20px;
+}
 
 .products-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  display: flex; 
+  overflow-x: auto; 
 }
 
 .product-item {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
+  margin-right: 20px; 
+  flex: 0 0 auto; 
+  min-width: 250px; 
+}
+
+.product-item:last-child {
+  margin-right: 0; 
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
 }
 
 .product-item h2 {
   margin-top: 0;
+  color: #007bff;
+  font-size: 1.2rem;
 }
 
 .product-item img {
@@ -23,6 +71,8 @@
 
 .product-item p {
   margin-bottom: 10px;
+  color: #666;
+  font-size: 1rem;
 }
 
 .product-item button {
@@ -32,45 +82,14 @@
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .product-item button:hover {
   background-color: #0056b3;
 }
 
-
-/* HomePage.css */
-
-/* HomePage.css */
-
-.homepage-container {
+h1{
   text-align: center;
-  padding: 50px;
-}
-
-.homepage-heading {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.homepage-text {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.homepage-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-top: 20px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.homepage-button:hover {
-  background-color: #0056b3;
-  color: #fff;
 }
