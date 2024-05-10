@@ -3,7 +3,7 @@ import './App.css';
 
 const HomePage = () => {
   return (
-    <div class="body">
+    <div className="body">
       <h1>Welcome to Jeneva Store</h1>
       <p>Discover amazing products and shop with ease!</p>
     </div>
