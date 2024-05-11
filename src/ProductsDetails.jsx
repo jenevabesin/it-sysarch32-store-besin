@@ -47,7 +47,7 @@ const ProductDetails = ({ addToCart }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ productName: product.product_name, price: product.price }), // Send product name and price to the backend
+        body: JSON.stringify({ productName: product.product_name, price: product.price * 100 }), // Send product name and price to the backend
       });
 
       if (response.ok) {

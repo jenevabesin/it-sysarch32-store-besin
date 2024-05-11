@@ -1,8 +1,7 @@
 import React from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-
-const stripePromise = loadStripe('your_stripe_publishable_key');
+const stripePromise = loadStripe('pk_test_51PEvNOEoCKfVp71pGchlLLSILQp5clDkfWmBfoh0mvVdoyBfGM6x6AWyd2EchcTruN343g3RrkhPe4MeyLCsyHPj00KmIPxHxC');
 
 const CheckoutButton = ({ cartItems }) => {
   const handleCheckout = async () => {
