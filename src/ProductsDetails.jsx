@@ -42,7 +42,7 @@ const ProductDetails = ({ addToCart }) => {
     const stripe = await stripePromise;
 
     try {
-      const response = await fetch('http://localhost:4000/create-checkout-session', {
+      const response = await fetch('http://34.143.219.63/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
