@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { firestore } from './configs/firebase-config';
 import { doc, getDoc } from 'firebase/firestore';
-import Cart from './Cart';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51PEvNOEoCKfVp71pGchlLLSILQp5clDkfWmBfoh0mvVdoyBfGM6x6AWyd2EchcTruN343g3RrkhPe4MeyLCsyHPj00KmIPxHxC');
 
 const ProductDetails = ({ addToCart }) => {
   const { productId } = useParams();
@@ -36,12 +38,45 @@ const ProductDetails = ({ addToCart }) => {
     setQuantity(parseInt(event.target.value));
   };
 
+  const handleClick = async () => {
+    const stripe = await stripePromise;
+
+    try {
+      const response = await fetch('http://localhost:4000/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productName: product.product_name, price: product.price }), // Send product name and price to the backend
+      });
+
+      if (response.ok) {
+        // If the request is successful, retrieve the session ID from the response
+        const session = await response.json();
+
+        // Redirect the user to the Stripe Checkout page using the session ID
+        const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+        if (result.error) {
+          // If there is an error during the redirect, display the error message
+          setError(result.error.message);
+        }
+      } else {
+        // If there is an error creating the checkout session, display an error message
+        setError('Error creating checkout session');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An error occurred. Please try again later.');
+    }
+  };
+
   const handleAddToCart = () => {
     if (!selectedSize) {
       setError('Please select a size');
       return;
     }
-    
+
     const newItem = {
       id: product.id,
       name: product.product_name,
@@ -49,7 +84,7 @@ const ProductDetails = ({ addToCart }) => {
       price: product.price,
       quantity: quantity,
     };
-    addToCart(newItem); 
+    addToCart(newItem);
     setSelectedSize('');
     setQuantity(1);
     setError('');
@@ -64,7 +99,6 @@ const ProductDetails = ({ addToCart }) => {
             className='product-image'
             src={product.product_image}
             alt={product.product_name}
-            
           />
           <p>{product.product_description}</p>
           <p>Price: ₱{product.price}</p>
@@ -83,6 +117,7 @@ const ProductDetails = ({ addToCart }) => {
           </label>
           {error && <p style={{ color: 'red' }}>{error}</p>}
           <button onClick={handleAddToCart}>Add to Cart</button>
+          <button onClick={handleClick}>Checkout</button>
         </div>
       )}
     </div>

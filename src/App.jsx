@@ -33,6 +33,7 @@ const App = () => {
           <Route path="/products/:productId" element={<ProductDetails addToCart={addToCart} />} />
         </Routes>
         <Cart cartItems={cartItems} />
+        
       </div>
     </Router>
   );
