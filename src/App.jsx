@@ -22,10 +22,9 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-      <header>
-         <button onClick={() => navigateTo('/')}>Jeneva Store</button>
-          <button onClick={() => navigateTo('/products')}>Shop</button>
-          
+      <header> 
+      <Link to="/" className="button">Jeneva Store</Link>
+       <Link to="/products" className="button">Shop</Link>
       </header>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -33,7 +32,7 @@ const App = () => {
           <Route path="/products/:productId" element={<ProductDetails addToCart={addToCart} />} />
         </Routes>
         <Cart cartItems={cartItems} />
-        
+
       </div>
     </Router>
   );
